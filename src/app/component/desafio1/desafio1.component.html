@@ -1,6 +1,6 @@
 <mat-card align=center>
   <mat-card-title>Converter em números Romanos</mat-card-title>
-  <form [formGroup]="formulario" (ngSubmit)="Converter()"  >
+  <form [formGroup]="formulario" (ngSubmit)="entrada()"  >
     <mat-form-field class="formulario">
       <mat-label >Digite um número entre 1 e 3999</mat-label>
         <input matInput formControlName="valor">

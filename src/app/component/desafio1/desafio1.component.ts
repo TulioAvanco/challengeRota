@@ -12,6 +12,7 @@ export class Desafio1Component implements OnInit {
 
   formulario: FormGroup;
   numero:number;
+  romano:string | void;
   constructor(private formBuilder: FormBuilder) {
 
     this.formulario = this.formBuilder.group({
@@ -23,35 +24,46 @@ export class Desafio1Component implements OnInit {
 
   }
 
+  entrada () {
+
+    this.numero = this.formulario.get('valor')?.value
+   this.romano= this.converte(this.numero);
+    console.log(this.romano)
 
 
-  Converter() {
-    var numRomanos = [
-      M 1000,
-      CM 900,
-      D 500,
-      CD 400,
-      C 100,
-      XC 90,
-      L 50,
-      XL 40,
-      X 10,
-      IX 9,
-      V 5,
-      IV 4,
-      I 1
-    ]
+
+  }
+
+
+
+  converte(numero : number) {
+
+    const numRomanos: any = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    }
     var result = ''
 
     for (let key in numRomanos) {
 
-      if (this.numero === numRomanos[key]) {
+      if (numero == numRomanos[key]) {
         return result +=key;
       }
-      var check = this.numero > numRomanos[key];
+      var check = numero > numRomanos[key];
       if(check) {
-        result = result + key.repeat(parseInt(this.numero/numRomanos[key]));
-        this.numero = this.numero%numRomanos[key];
+        result = result + key.repeat(parseInt(String(numero / numRomanos[key])));
+        numero = numero%numRomanos[key];
       }
     }
     return result;
