@@ -34,10 +34,7 @@ export class Desafio1Component implements OnInit {
 
   }
 
-
-
   converte(numero : number) {
-
     const numRomanos: any = {
       M: 1000,
       CM: 900,
