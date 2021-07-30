@@ -2,6 +2,9 @@
   width: 400px;
   text-align: center;
 }
+.resultado{
+  padding: 30px;
+}
 
 @media only screen and (max-width: 650px) {
   .formulario {

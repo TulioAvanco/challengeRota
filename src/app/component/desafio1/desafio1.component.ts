@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {stringify} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-desafio1',
@@ -10,13 +9,18 @@ import {stringify} from "@angular/compiler/src/util";
 export class Desafio1Component implements OnInit {
 
 
-  formulario: FormGroup;
-  numero:number;
-  romano:string | void;
+  formulario1: FormGroup;
+  formulario2: FormGroup;
+  numero:number=0;
+  romano:string = "";
+  digitaRomano: string;
   constructor(private formBuilder: FormBuilder) {
 
-    this.formulario = this.formBuilder.group({
+    this.formulario1 = this.formBuilder.group({
       valor:[null, [Validators.required, Validators.min(1),Validators.max(3999)]]
+    })
+    this.formulario2 = this.formBuilder.group({
+      valor:[null, [Validators.required]]
     })
   }
 
@@ -24,17 +28,11 @@ export class Desafio1Component implements OnInit {
 
   }
 
-  entrada () {
-
-    this.numero = this.formulario.get('valor')?.value
-   this.romano= this.converte(this.numero);
-    console.log(this.romano)
-
-
-
+  entradaDecimal() {
+    this.romano= this.converteParaRomano(this.formulario1.get('valor')?.value);
   }
 
-  converte(numero : number) {
+  converteParaRomano(numero : number) {
     const numRomanos: any = {
       M: 1000,
       CM: 900,
@@ -66,4 +64,47 @@ export class Desafio1Component implements OnInit {
     return result;
   }
 
+  entradaRomano() {
+   this.numero = this.converteParaDecimal(this.formulario2.get('valor')?.value);
+  }
+
+
+  converteParaDecimal (romano: String): number {
+    this.digitaRomano = romano.toUpperCase()
+    var listaRomano;
+    const numRomanos: any = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    }
+   listaRomano = this.digitaRomano.split('');
+    let total = 0;
+    let primeiro;
+    let proximo;
+
+    for (let i=0; i< listaRomano.length; i++){
+      primeiro = numRomanos[listaRomano[i]]
+      proximo = numRomanos[listaRomano[i+1]]
+
+      if ( primeiro < proximo){
+        total -= (primeiro)
+      }else {
+        total += (primeiro)
+      }
+
+    }
+
+    return total;
+
+  }
 }

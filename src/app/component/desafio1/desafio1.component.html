@@ -1,29 +1,31 @@
 <mat-tab-group>
   <mat-tab label="Decimal para Romanos">
     <mat-card align=center>
-    <mat-card-title>Converter em Romano</mat-card-title>
-    <form [formGroup]="formulario" (ngSubmit)="entrada()">
+    <mat-card-title>Converter para Romano</mat-card-title>
+    <form [formGroup]="formulario1" (ngSubmit)="entradaDecimal()">
       <mat-form-field class="formulario">
         <mat-label >Digite um número entre 1 e 3999</mat-label>
         <input matInput formControlName="valor">
       </mat-form-field>
       <br>
-      <button mat-raised-button color="primary" [disabled]="!formulario.valid">Converter</button>
+      <button mat-raised-button color="primary" [disabled]="!formulario1.valid">Converter</button>
     </form>
+      <mat-card-title class="resultado" *ngIf="romano!=''">{{romano}}</mat-card-title>
   </mat-card>
   </mat-tab>
   <mat-tab label="Romanos para Decimal">
     <mat-card align=center>
     <mat-card-title>Converter para Decimal</mat-card-title>
-    <form (ngSubmit)="entrada()">
+    <form [formGroup]="formulario2" (ngSubmit)="entradaRomano()">
       <mat-form-field class="formulario">
         <mat-label >Digite um número Romando entre I e MMMCMXCIX</mat-label>
         <input matInput formControlName="valor">
       </mat-form-field>
       <br>
-      <button mat-raised-button color="primary" [disabled]="!formulario.valid">Converter</button>
+      <button mat-raised-button color="primary" [disabled]="!formulario2.valid">Converter</button>
     </form>
-  </mat-card>
+      <mat-card-title class="resultado" *ngIf="numero!=0">{{numero}}</mat-card-title>
+    </mat-card>
   </mat-tab>
 </mat-tab-group>
 
