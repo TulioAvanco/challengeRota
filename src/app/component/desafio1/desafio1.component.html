@@ -1,6 +1,6 @@
 <mat-tab-group>
   <mat-tab label="Decimal para Romanos">
-    <mat-card align=center>
+    <mat-card class="box">
     <mat-card-title>Converter para Romano</mat-card-title>
     <form [formGroup]="formulario1" (ngSubmit)="entradaDecimal()">
       <mat-form-field class="formulario">
@@ -14,7 +14,7 @@
   </mat-card>
   </mat-tab>
   <mat-tab label="Romanos para Decimal">
-    <mat-card align=center>
+    <mat-card class="box">
     <mat-card-title>Converter para Decimal</mat-card-title>
     <form [formGroup]="formulario2" (ngSubmit)="entradaRomano()">
       <mat-form-field class="formulario">

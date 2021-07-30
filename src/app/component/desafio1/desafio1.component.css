@@ -5,6 +5,11 @@
 .resultado{
   padding: 30px;
 }
+.box {
+  text-align: center;
+}
+
+
 
 @media only screen and (max-width: 650px) {
   .formulario {

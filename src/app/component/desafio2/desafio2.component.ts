@@ -28,7 +28,7 @@ export class Desafio2Component implements OnInit, AfterViewInit{
 
 
   }
-
+  // Constroi o grid
   buildGrid(){
     return new Array(this.COLS).fill(null).
       map(() => new Array(this.ROWS).fill(null).map(() => Math.floor(Math.random() * 2 )))
@@ -36,6 +36,7 @@ export class Desafio2Component implements OnInit, AfterViewInit{
 
   }
 
+  // Renderiza
   render (tabela: any){
     for (let col = 0; col< tabela.length; col++){
       for (let row = 0; row< tabela[col].length; row++){
@@ -54,10 +55,23 @@ export class Desafio2Component implements OnInit, AfterViewInit{
     for (let col = 0; col< jogo.length; col++){
       for (let row = 0; row< jogo[col].length; row++) {
         const celula = jogo[col][row];
+        //for para dar a volta na celula verificando os visinhos
+        var numeroVisinhos = 0;
         for (let i = -1; i < 2; i++){
           for (let x = -1 ; x - 2; x ++){
+            if (i == 0 && x == 0 ){
+              continue
+            }
+            const visinhoAtual = jogo[col + i][row + x];
+            numeroVisinhos += visinhoAtual;
+
+
           }
         }
+
+        // Regras
+
+
       }
       }
   }
