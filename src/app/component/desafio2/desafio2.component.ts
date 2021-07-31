@@ -1,4 +1,5 @@
-import {Component, OnInit, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef, ViewChild, NgZone} from '@angular/core';
+import { ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-desafio2',
@@ -12,7 +13,8 @@ export class Desafio2Component implements OnInit, AfterViewInit{
   COLS:number;
   ROWS: number;
   tabela: any;
-  constructor() { }
+  request: any;
+  constructor(private ngZone: NgZone ) { }
 
   ngOnInit() {
 
@@ -23,17 +25,18 @@ export class Desafio2Component implements OnInit, AfterViewInit{
     this.game.height=400;
     this.COLS = this.game.width / this.resolcao
     this.ROWS = this.game.height / this.resolcao
-    this.render(this.buildGrid())
-      console.log(this.buildGrid())
-
-
+    this.tabela = this.buildGrid()
+    this.ngZone.runOutsideAngular(()=> this.update())
+    this.render(this.tabela)
+    setInterval(()=>{
+      this.update()
+    },400)
   }
   // Constroi o grid
   buildGrid(){
     return new Array(this.COLS).fill(null).
-      map(() => new Array(this.ROWS).fill(null).map(() => Math.floor(Math.random() * 2 )))
-
-
+      map(() => new Array(this.ROWS).fill(null)
+      .map(() => Math.floor(Math.random() * 2 )));
   }
 
   // Renderiza
@@ -49,33 +52,50 @@ export class Desafio2Component implements OnInit, AfterViewInit{
       }
     }
   }
+
+
+update(){
+    this.tabela = this.proximaGeracao(this.tabela)
+    this.render(this.tabela)
+    this.request = requestAnimationFrame(()=> this.update)
+  }
+
+
   proximaGeracao(jogo: any){
-        // @ts-ignore
-    const proxGera = jogo.map(lista => [lista]);
+    //@ts-ignore
+    const proxGera = jogo.map((lista) => [...lista]);
     for (let col = 0; col< jogo.length; col++){
       for (let row = 0; row< jogo[col].length; row++) {
         const celula = jogo[col][row];
         //for para dar a volta na celula verificando os visinhos
-        var numeroVisinhos = 0;
+        let numeroVisinhos = 0;
         for (let i = -1; i < 2; i++){
-          for (let x = -1 ; x - 2; x ++){
-            if (i == 0 && x == 0 ){
-              continue
+          for (let x = -1 ; x < 2; x ++){
+            if (i === 0 && x === 0 ){
+              continue;
             }
-            const visinhoAtual = jogo[col + i][row + x];
+
+            let x_celula = col + i
+            let y_celula = row + x
+
+            if (x_celula >= 0 && y_celula >= 0 && x_celula < this.COLS && y_celula < this.ROWS){
+              const visinhoAtual = jogo[col + i][row + x];
             numeroVisinhos += visinhoAtual;
-
-
+            }
           }
         }
-
         // Regras
-
-
+        if(celula == 1 && numeroVisinhos < 2) {
+          proxGera[col][row] = 0 }
+          else if (celula == 1 && numeroVisinhos > 3) {
+            proxGera[col][row] = 0
+          }else if (celula == 0 && numeroVisinhos == 3) {
+            proxGera[col][row]= 1
+          }
+        }
       }
-      }
+      console.log('proxima Geração')
+      return proxGera
+
   }
-
-
-
 }
