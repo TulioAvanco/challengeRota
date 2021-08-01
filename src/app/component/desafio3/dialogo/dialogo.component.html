@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Escolha o Item que você Consumiu</h1>
+<div mat-dialog-content>
+  <p>Qual item você consumiu?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option></mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<p>Quantas pessoas o consumiram?</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>Pessoas</mat-label>
+  <input matInput >
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button  cdkFocusInitial>Ok</button>
+</div>

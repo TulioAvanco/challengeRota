@@ -23,6 +23,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSliderModule} from '@angular/material/slider';
+import { DialogoComponent } from './component/desafio3/dialogo/dialogo.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatSliderModule} from '@angular/material/slider';
     NavigatorComponent,
     Desafio1Component,
     Desafio2Component,
-    Desafio3Component
+    Desafio3Component,
+    DialogoComponent
   ],
     imports: [
         BrowserModule,
@@ -52,7 +55,8 @@ import {MatSliderModule} from '@angular/material/slider';
         MatInputModule,
         ReactiveFormsModule,
         MatTabsModule,
-        MatSliderModule
+        MatSliderModule,
+        MatSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]
