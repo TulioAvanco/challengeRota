@@ -4,4 +4,14 @@
   <mat-card-content>Adicionar Itens Consumidos</mat-card-content>
   <button mat-fab color="primary" (click)="openDialog()" ><mat-icon>add</mat-icon></button>
 </mat-card>
+<mat-card class="box" *ngIf="itensConsumidos.length > 1">
+  <mat-card-title >Itens Consumidos</mat-card-title>
+  <mat-list role="list">
+    <mat-divider></mat-divider>
+        <div *ngFor="let itens of itensConsumidos">
+    <mat-list-item role="listitem"><mat-card-content>{{itens}} no valor de {{itens}}</mat-card-content>
+    </mat-list-item>
+    </div>
+  </mat-list>
+</mat-card>
 

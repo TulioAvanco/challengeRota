@@ -2,20 +2,20 @@
 <div mat-dialog-content>
   <p>Qual item você consumiu?</p>
   <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
+    <mat-label>Selecione</mat-label>
     <mat-select>
-      <mat-option></mat-option>
+      <mat-option *ngFor="let item of produtos" [value]="item.Valor"> {{item.Produto}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
-<p>Quantas pessoas o consumiram?</p>
+<p>Quantas pessoas consumiram ?</p>
 
 <mat-form-field appearance="fill">
   <mat-label>Pessoas</mat-label>
-  <input matInput >
+  <input matInput>
 </mat-form-field>
 
 <div mat-dialog-actions>
   <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-button  cdkFocusInitial>Ok</button>
+  <button mat-button>Ok</button>
 </div>

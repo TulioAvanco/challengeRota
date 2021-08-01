@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
+import {map} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-dialogo',
@@ -7,29 +9,37 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./dialogo.component.css']
 })
 export class DialogoComponent implements OnInit {
-  produtos: {
-    Pizza: 42.00;
-    Refrigerante_8: 8.00;
-    Suco: 7.00;
-    Rodizio_Simples : 70.00;
-    Rodizio_Executivo: 85.00;
-    Temaki: 20.00;
-    Refrigerante_6: 6.00;
-    Porcao_de_Peixe: 50.00;
-  }
 
-  constructor( public dialogRef: MatDialogRef<DialogoComponent>,) { }
+
+
+
+
+ produtos = [
+      {Produto:'Pizza',Valor: 42.00},
+      {Produto:'Refrigerante 8',Valor: 8.00},
+      {Produto:'Suco',Valor:7.00},
+      {Produto:'Rodízio Simples',Valor:70.00},
+      {Produto:'Rodízio Executivo',Valor:85.00},
+      {Produto:'Temaki',Valor:20.00},
+      {Produto:'Refrigerante 6',Valor:6.00},
+      {Produto:'Porção de Peixe',Valor:50.00}
+ ]
+
+
+
+
+  constructor( public dialogRef: MatDialogRef<DialogoComponent>) { }
 
 
 
   ngOnInit(): void {
+
+
   }
-
-
-
-
-
   cancelar(): void {
+    for (let of in this.produtos){
+
+    }
     this.dialogRef.close();
   }
 

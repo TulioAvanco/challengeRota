@@ -25,6 +25,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatSliderModule} from '@angular/material/slider';
 import { DialogoComponent } from './component/desafio3/dialogo/dialogo.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatSelectModule} from "@angular/material/select";
         ReactiveFormsModule,
         MatTabsModule,
         MatSliderModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule
     ],
   providers: [],
   bootstrap: [AppComponent]
