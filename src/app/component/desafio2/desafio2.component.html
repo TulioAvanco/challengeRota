@@ -1,7 +1,12 @@
 <mat-card  class="box">
   <mat-card-title>The Game Of Life</mat-card-title>
-</mat-card>
-<mat-card class="tabela box">
-  <canvas #canvas height="800" width="500" ></canvas>
+<canvas #canvas height="400" width="400" class="margem"></canvas>
+<div class="controles">
+ <mat-card-title class="margem">Controles</mat-card-title>
+
+<button mat-raised-button color="primary" class="margem" (click)="reinicia()" >Nova Geração</button>
+
+</div>
+
 </mat-card>
 

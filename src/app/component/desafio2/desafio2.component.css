@@ -1,6 +1,18 @@
-.tabela{
-  height: 400px;
-}
+
+
 .box{
   text-align: center;
+}
+
+
+.margem{
+  margin: 15px;
+}
+
+
+.controles{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

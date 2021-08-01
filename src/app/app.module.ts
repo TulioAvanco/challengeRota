@@ -22,6 +22,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {MatTabsModule} from "@angular/material/tabs";
         FormsModule,
         MatInputModule,
         ReactiveFormsModule,
-        MatTabsModule
+        MatTabsModule,
+        MatSliderModule
     ],
   providers: [],
   bootstrap: [AppComponent]

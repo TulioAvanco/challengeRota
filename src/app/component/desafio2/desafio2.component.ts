@@ -1,5 +1,4 @@
-import {Component, OnInit, AfterViewInit, ElementRef, ViewChild, NgZone} from '@angular/core';
-import { ignoreElements } from 'rxjs/operators';
+import {AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-desafio2',
@@ -13,7 +12,9 @@ export class Desafio2Component implements OnInit, AfterViewInit{
   COLS:number;
   ROWS: number;
   tabela: any;
-  request: any;
+  request: any
+  velocidade: number = 500;
+
   constructor(private ngZone: NgZone ) { }
 
   ngOnInit() {
@@ -21,30 +22,37 @@ export class Desafio2Component implements OnInit, AfterViewInit{
   }
   ngAfterViewInit() {
     this.game = this.canvas.nativeElement.getContext('2d')
+    // this.game.addEventListener('click', this.click);
+    // this.game.addEventListener('mousemove', this.click);
+
     this.game.width=400;
     this.game.height=400;
     this.COLS = this.game.width / this.resolcao
     this.ROWS = this.game.height / this.resolcao
     this.tabela = this.buildGrid()
-    this.ngZone.runOutsideAngular(()=> this.update())
     this.render(this.tabela)
     setInterval(()=>{
       this.update()
-    },400)
+    },this.velocidade)
+    this.request = window.requestAnimationFrame(()=>this.update)
   }
   // Constroi o grid
   buildGrid(){
     return new Array(this.COLS).fill(null).
-      map(() => new Array(this.ROWS).fill(null)
-      .map(() => Math.floor(Math.random() * 2 )));
+    map(() => new Array(this.ROWS).fill('').map(() => Math.floor(Math.random() * 2 ))
+);
   }
 
+  reinicia(){
+    this.tabela = this.buildGrid()
+  }
   // Renderiza
   render (tabela: any){
     for (let col = 0; col< tabela.length; col++){
       for (let row = 0; row< tabela[col].length; row++){
         const celula = tabela[col][row];
         this.game.beginPath();
+
         this.game.rect(col * this.resolcao, row * this.resolcao, this.resolcao , this.resolcao);
         this.game.fillStyle = celula ? '#3F51B5' : 'white';
         this.game.fill();
@@ -53,11 +61,9 @@ export class Desafio2Component implements OnInit, AfterViewInit{
     }
   }
 
-
-update(){
+  update(){
     this.tabela = this.proximaGeracao(this.tabela)
     this.render(this.tabela)
-    this.request = requestAnimationFrame(()=> this.update)
   }
 
 
@@ -94,7 +100,7 @@ update(){
           }
         }
       }
-      console.log('proxima Geração')
+
       return proxGera
 
   }
