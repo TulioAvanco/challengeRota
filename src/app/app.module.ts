@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +29,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import { DialogoComponent } from './component/desafio3/dialogo/dialogo.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
+import {MatRadioModule} from "@angular/material/radio";
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 
 @NgModule({
   declarations: [
@@ -58,9 +64,14 @@ import {MatTableModule} from "@angular/material/table";
         MatTabsModule,
         MatSliderModule,
         MatSelectModule,
-        MatTableModule
+        MatTableModule,
+        MatRadioModule,
+      NgxMaskModule.forRoot(),
     ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: "pt-BR"
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

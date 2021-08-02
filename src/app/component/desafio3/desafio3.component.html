@@ -1,17 +1,27 @@
-<mat-card class="box">
+<mat-card class="box mat-elevation-z5">
   <mat-card-title>Calcular Conta</mat-card-title>
 <br>
   <mat-card-content>Adicionar Itens Consumidos</mat-card-content>
   <button mat-fab color="primary" (click)="openDialog()" ><mat-icon>add</mat-icon></button>
 </mat-card>
-<mat-card class="box" *ngIf="itensConsumidos.length > 1">
+<mat-card class="box" *ngIf="itensConsumidos.length > 0">
   <mat-card-title >Itens Consumidos</mat-card-title>
   <mat-list role="list">
     <mat-divider></mat-divider>
         <div *ngFor="let itens of itensConsumidos">
-    <mat-list-item role="listitem"><mat-card-content>{{itens}} no valor de {{itens}}</mat-card-content>
-    </mat-list-item>
+          <div class="item">
+          <img src="{{itens.image}}" width="40px">
+    <mat-list-item role="listitem">{{itens.Produto}} no valor de R${{itens.Valor|mask:'separator.2'}}</mat-list-item>
+            <button mat-mini-fab color="warn" (click)="delete(itens)"><mat-icon>delete</mat-icon></button>
+          </div>
+          <mat-divider></mat-divider>
     </div>
   </mat-list>
+<mat-card class="mat-elevation-z5 box">
+  <label >Deseja pagar os 10%</label>
+  <mat-radio-group class="box-total" [(ngModel)]="percentual" (change)="this.percent()" aria-label="Select an option">
+    <mat-radio-button value=0 style="padding-right: 15px">Não</mat-radio-button>
+    <mat-radio-button value=10>Sim</mat-radio-button>
+  </mat-radio-group>
+  <mat-card-title class="box-total">Total de R${{this.valorTotal | mask: 'separator.2'}}</mat-card-title></mat-card>
 </mat-card>
-

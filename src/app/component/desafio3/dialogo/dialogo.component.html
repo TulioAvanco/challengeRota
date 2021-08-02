@@ -1,21 +1,21 @@
-<h1 mat-dialog-title>Escolha o Item que você Consumiu</h1>
+<h1 mat-dialog-title>Adicionar item</h1>
+<form [formGroup]="prodConsumido" (ngSubmit)="consumo()">
 <div mat-dialog-content>
   <p>Qual item você consumiu?</p>
   <mat-form-field appearance="fill">
     <mat-label>Selecione</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let item of produtos" [value]="item.Valor"> {{item.Produto}}</mat-option>
+    <mat-select formControlName="prod">
+      <mat-option *ngFor="let item of produtos" [value]="item">{{item.Produto}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 <p>Quantas pessoas consumiram ?</p>
-
 <mat-form-field appearance="fill">
   <mat-label>Pessoas</mat-label>
-  <input matInput>
+  <input matInput formControlName="pessoas">
 </mat-form-field>
-
 <div mat-dialog-actions>
-  <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-button>Ok</button>
+  <button mat-button [disabled]="!prodConsumido.valid">Ok</button>
 </div>
+</form>
+<button mat-button (click)="cancelar()">Cancelar</button>

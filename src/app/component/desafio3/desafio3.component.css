@@ -4,3 +4,13 @@
   text-align: center;
   align-items: center;
 }
+
+.item{
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+}
+
+.box-total{
+  padding: 30px;
+}
