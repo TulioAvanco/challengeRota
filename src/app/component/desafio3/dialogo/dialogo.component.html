@@ -11,11 +11,13 @@
 </div>
 <p>Quantas pessoas consumiram ?</p>
 <mat-form-field appearance="fill">
-  <mat-label>Pessoas</mat-label>
+  <mat-label>Pessoa(s)</mat-label>
   <input matInput formControlName="pessoas">
 </mat-form-field>
-<div mat-dialog-actions>
-  <button mat-button [disabled]="!prodConsumido.valid">Ok</button>
+<div mat-dialog-actions class="botoes">
+  <button mat-raised-button [disabled]="!prodConsumido.valid" color="primary">Lançar</button>
 </div>
 </form>
-<button mat-button (click)="cancelar()">Cancelar</button>
+<div mat-dialog-actions class="botoes">
+<button mat-raised-button (click)="cancelar()" color="warn">Cancelar</button>
+</div>

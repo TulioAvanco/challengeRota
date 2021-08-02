@@ -45,4 +45,11 @@ export class Desafio3Component implements OnInit {
     this.comPercent -= item.Valor*1.1
     this.percent()
   }
+
+  limpar(){
+    this.semPercent=0
+    this.comPercent=0
+    this.itensConsumidos=[]
+    this.valorTotal=0
+  }
 }

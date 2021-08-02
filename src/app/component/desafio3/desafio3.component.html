@@ -24,4 +24,6 @@
     <mat-radio-button value=10>Sim</mat-radio-button>
   </mat-radio-group>
   <mat-card-title class="box-total">Total de R${{this.valorTotal | mask: 'separator.2'}}</mat-card-title></mat-card>
+  <button mat-raised-button (click)="limpar()" color="warn" style="margin-top: 15px">Limpar</button>
 </mat-card>
+
